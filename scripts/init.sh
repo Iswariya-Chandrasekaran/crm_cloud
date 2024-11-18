@@ -20,6 +20,7 @@ cd /workspace
 bench init \
 --ignore-exist \
 --skip-redis-config-generation \
+--frappe-branch version-15 \
 frappe-bench
 
 cd frappe-bench
@@ -43,7 +44,7 @@ bench --site dev.localhost set-config developer_mode 1
 bench --site dev.localhost clear-cache
 bench use dev.localhost
 mv /workspace/frappe-bench/temp/* /workspace/frappe-bench/sites/dev.localhost/private/backups/
-bench get-app crm
+bench get-app https://github.com/lmnaslimited/cpq.git
 bench --site dev.localhost install-app crm
 bench --site dev.localhost --force restore --mariadb-root-password 123 /workspace/frappe-bench/sites/dev.localhost/private/backups/20241118_125938-dev_localhost-database.sql.gz --with-public-files /workspace/frappe-bench/sites/dev.localhost/private/backups/20241118_125938-dev_localhost-files.tar --with-private-files /workspace/frappe-bench/sites/dev.localhost/private/backups/20241118_125938-dev_localhost-private-files.tar
 bench --site dev.localhost migrate
